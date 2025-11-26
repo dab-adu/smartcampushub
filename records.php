@@ -41,7 +41,7 @@ $user_id = $_SESSION['username'];
 
 <div class="main-container">
     <div class="sidebar text-white p-3">        
-        <a href="index.php" class="text-white d-block mb-3">Profile</a>
+        <a href="profile.php" class="text-white d-block mb-3">Profile</a>
         <a href="subjects.php" class="text-white d-block mb-3">Subjects</a>
         <a href="records.php" class="text-warning fw-bold d-block mb-3">Records</a>
         <a href="ecd.php" class="text-white d-block mb-3">ECD</a>
