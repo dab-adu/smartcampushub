@@ -6,18 +6,15 @@ error_reporting(E_ALL);
 
 include 'db.php';
 
-// Check login
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit;
 }
 
-// Fetch record types (PDO)
 $types_stmt = $conn->prepare("SELECT * FROM record_types");
 $types_stmt->execute();
 $types = $types_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Identify current user
 $user_id = $_SESSION['username'];
 
 ?>
@@ -90,15 +87,15 @@ $user_id = $_SESSION['username'];
 
                 <?php
                 $sql = "
-                    SELECT rr.*, rt.record_name 
-                    FROM record_requests rr
-                    JOIN record_types rt ON rr.record_type_id = rt.id
-                    WHERE rr.user_id = ?
-                    ORDER BY rr.date_requested DESC
+                SELECT rr.*, rt.record_name
+                FROM record_requests rr
+                JOIN record_types rt ON rr.record_type_id = rt.id
+                WHERE rr.user_id = ?
+                ORDER BY rr.date_requested DESC
                 ";
-
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$user_id]);
+
                 $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($requests as $row):
